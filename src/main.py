@@ -33,5 +33,4 @@ def things(data: dict):
     return {"response":f"Hello {name}! {age} years old from {city}"}
 
 if __name__ == '__main__':
-    # prom.start_http_server(8001)
     app.run(debug=True)

@@ -1,9 +1,21 @@
 version: '3.8'
 
+name: fastapi-prom-graf
+
 services:
-  fast-api: 
+  fastapi-app:
     build: ./src
+    container_name: fastapi-app
     command: uvicorn main:app --host 0.0.0.0
     ports: 
       - "8000:8000"
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml

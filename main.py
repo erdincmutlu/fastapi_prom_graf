@@ -32,11 +32,6 @@ def things(data: dict):
     things_counter.inc()  # Increment Prometheus counter
     return {"response":f"Hello {name}! {age} years old from {city}"}
 
-# Endpoint to expose Prometheus metrics
-@app.get("/metrics")
-def metrics():
-    return prom.generate_latest()
-
 if __name__ == '__main__':
     # prom.start_http_server(8001)
     app.run(debug=True)

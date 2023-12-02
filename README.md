@@ -32,4 +32,8 @@ Returns
 ```
 
 ## Prometheus
-You can access Prometheus at http://localhost:9090/ and explore the metrics collected
+You can access Prometheus at http://localhost:9090 and explore the metrics collected
+
+## Grafana
+You can access the Grafana board at http://localhost:3000 with default username
+and password (admin/admin)

@@ -1,12 +1,22 @@
 from fastapi import FastAPI, HTTPException
+import prometheus_client as prom
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+
+# Enable Prometheus metrics
+Instrumentator().instrument(app).expose(app)
+# Define Prometheus metrics
+hello_counter = prom.Counter('hello_requests', 'Total number of requests to /hello')
+things_counter = prom.Counter('things_requests', 'Total number of requests to /things')
 
 # GET endpoint: /hello
 @app.get("/hello")
 def hello_world(name:str):
     if name == "":
         name = "World"
+
+    hello_counter.inc()  # Increment Prometheus counter
     return {"greeting": f"Hello {name}!"}
 
 # POST endpoint: /things
@@ -19,7 +29,14 @@ def things(data: dict):
     city = data['city']
     age = data['age']
 
+    things_counter.inc()  # Increment Prometheus counter
     return {"response":f"Hello {name}! {age} years old from {city}"}
 
+# Endpoint to expose Prometheus metrics
+@app.get("/metrics")
+def metrics():
+    return prom.generate_latest()
+
 if __name__ == '__main__':
+    # prom.start_http_server(8001)
     app.run(debug=True)

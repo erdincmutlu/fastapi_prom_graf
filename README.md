@@ -1,27 +1,12 @@
 # fast_prom_graf
 FastAPI Prometheus Grafana
 
-## Building and Running
-### To Build
+## Running
 ```
-./build.sh
-```
-## To run
-On terminal
-```
-./run_server.sh
+docker compose up
 ```
 
-On another terminal
-```
-./run_prometheus.sh
-```
-
-## FastAPI Server
-Run FastAPI server
-```
-uvicorn main:app --reload
-```
+## Endpoints
 
 ### GET /hello
 ```

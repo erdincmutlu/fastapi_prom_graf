@@ -1,5 +1,5 @@
-# flask_prom_graf
-Flask Prometheus Grafana
+# fast_prom_graf
+FastAPI Prometheus Grafana
 
 ## Building and Running
 ### To Build
@@ -17,15 +17,15 @@ On another terminal
 ./run_prometheus.sh
 ```
 
-## Flask Server
-Run Flask server
+## FastAPI Server
+Run FastAPI server
 ```
-python server.py
+uvicorn main:app --reload
 ```
 
 ### GET /hello
 ```
-http://127.0.0.1:5000/hello?name=Erdinc
+http://127.0.0.1:8000/hello?name=Erdinc
 ```
 Returns
 ```
@@ -37,7 +37,7 @@ Returns
 ### POST /things
 To post things
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"name": "Erdinc", "city": "London", "age": 25}' http://127.0.0.1:5000/things
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Erdinc", "city": "London", "age": 25}' http://127.0.0.1:8000/things
 ```
 Returns
 ```
